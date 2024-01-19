@@ -5,6 +5,7 @@ import {
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import { createElement } from "react";
+import { NavLink, Outlet } from "react-router-dom";
 const { Content, Footer, Header, Sider } = Layout;
 
 // const items = [
@@ -18,26 +19,26 @@ const { Content, Footer, Header, Sider } = Layout;
 //   label: `nav ${index + 1}`,
 // }));
 
-const items: MenuProps['items'] = [
+const items: MenuProps["items"] = [
   {
-    key: "1",
-    label: "Dashboard",
+    key: "Dashboard",
+    label: <NavLink to="/admin/dashboard">Dashboard</NavLink>,
   },
   {
-    key: "2",
-    label: "Profile",
-  },
-  {
-    key: "3",
+    key: "User Management",
     label: "User Management",
     children: [
       {
-        key: "11",
-        label: "Create Admin",
+        key: "Create Admin",
+        label: <NavLink to="/admin/create-admin">Create Admin</NavLink>,
       },
       {
-        key: "21",
-        label: "Create Student",
+        key: "create-faculty",
+        label: <NavLink to="/admin/create-faculty">Create Faculty</NavLink>,
+      },
+      {
+        key: "create-student",
+        label: <NavLink to="/admin/create-student">Create Student</NavLink>,
       },
     ],
   },
@@ -45,7 +46,7 @@ const items: MenuProps['items'] = [
 
 const MainLayout = () => {
   return (
-    <Layout style={{height: "100vh"}}>
+    <Layout style={{ height: "100vh" }}>
       <Sider
         breakpoint="lg"
         collapsedWidth="0"
@@ -56,8 +57,16 @@ const MainLayout = () => {
           console.log(collapsed, type);
         }}
       >
-        <div style={{display:"flex", justifyContent:'center', alignItems:'center', color:'white', height:'4rem'}}>
-          <h1 style={{fontSize: "23px"}}>Ph-University</h1>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            color: "white",
+            height: "4rem",
+          }}
+        >
+          <h1 style={{ fontSize: "23px" }}>Ph-University</h1>
         </div>
         <Menu
           theme="dark"
@@ -75,7 +84,8 @@ const MainLayout = () => {
               minHeight: 360,
             }}
           >
-            <h1>The main content should go here</h1>
+            {/* <h1>The main content should go here</h1> */}
+            <Outlet />
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>
