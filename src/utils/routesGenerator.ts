@@ -5,8 +5,15 @@ type TRoute = {
   element: ReactNode;
 };
 
-export const routeGenerator = (items) => {
-  //** Programmatical way
+type  TUserPath = {
+  name: string,
+  path?: string;
+  element?: ReactNode;
+  children?: TUserPath[]
+}
+
+//** Programmatical way
+export const routeGenerator = (items: TUserPath[]) => {
   const routes = items.reduce((acc: TRoute[], item) => {
     if (item.path && item.element) {
       acc.push({
@@ -18,7 +25,7 @@ export const routeGenerator = (items) => {
     if (item.children) {
       item.children.forEach((child) => {
         acc.push({
-          path: child.path,
+          path: child.path!,
           element: child.element,
         });
       });
