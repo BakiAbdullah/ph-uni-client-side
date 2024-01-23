@@ -1,13 +1,7 @@
-import { Layout, Menu, MenuProps } from "antd";
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
-import { createElement } from "react";
-import { NavLink, Outlet } from "react-router-dom";
-import { adminSidebarItems } from "../../routes/admin.routes";
-const { Content, Footer, Header, Sider } = Layout;
+import { Layout } from "antd";
+import { Outlet } from "react-router-dom";
+import Sidebar from "./Sidebar";
+const { Content, Header } = Layout;
 
 // const items = [
 //   UserOutlined,
@@ -48,34 +42,7 @@ const { Content, Footer, Header, Sider } = Layout;
 const MainLayout = () => {
   return (
     <Layout style={{ height: "100vh" }}>
-      <Sider
-        breakpoint="lg"
-        collapsedWidth="0"
-        onBreakpoint={(broken) => {
-          console.log(broken);
-        }}
-        onCollapse={(collapsed, type) => {
-          console.log(collapsed, type);
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            color: "white",
-            height: "4rem",
-          }}
-        >
-          <h1 style={{ fontSize: "23px" }}>Ph-University</h1>
-        </div>
-        <Menu
-          theme="dark"
-          mode="inline"
-          defaultSelectedKeys={["4"]}
-          items={adminSidebarItems}
-        />
-      </Sider>
+      <Sidebar />
       <Layout>
         <Header style={{ padding: 0 }} />
         <Content style={{ margin: "24px 16px 0" }}>
@@ -89,9 +56,6 @@ const MainLayout = () => {
             <Outlet />
           </div>
         </Content>
-        <Footer style={{ textAlign: "center" }}>
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
-        </Footer>
       </Layout>
     </Layout>
   );
